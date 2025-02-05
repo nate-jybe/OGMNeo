@@ -109,6 +109,7 @@ test('Test updateMany node', (assert) => {
 
 test('Test get by id', (assert) => {
     OGMNeoNode.nodeWithId(nodeId).then((node) => {
+        console.log('Get by id: node: {}', node);
         assert.notEqual(node, null);
         assert.notEqual(node.id, null);
         assert.equal(node.name, 'name1');
@@ -127,6 +128,7 @@ test('Test FAIL find by id node', (assert) => {
 
 test('Test get MANY by ids', (assert) => {
     OGMNeoNode.manyWithIds([nodeId]).then((nodes) => {
+        console.log('Nodes: {}', nodes);
         assert.equal(_.isArray(nodes), true);
         let node = _.first(nodes);
         assert.notEqual(node, null);
@@ -337,6 +339,7 @@ test('Test delete cascade NODE', (assert) => {
     let createUser2 = OGMNeoNode.createOperation({name: 'Alain Prost'}, 'Person');
 
     OGMNeoOperationExecuter.batchWriteOperations([createUser1, createUser2]).then((result) => {
+        console.log("Test delete: result: ", result);    
         let created1 = result[0];
         let created2 = result[1];
         OGMNeoRelation.relate(created1.id,'RIVALS', created2.id).then(() => {
@@ -352,8 +355,6 @@ test('Test delete cascade NODE', (assert) => {
             });
         });
     });
-
-
 });
 
 test('Test delete FAIL MANY NODE', (assert) => {

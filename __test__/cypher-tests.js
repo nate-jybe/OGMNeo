@@ -4,7 +4,7 @@ const test = require('tape');
 const OGMNeoCypher = require('../lib/ogmneo-cypher');
 const OGMNeo = require('../lib/ogmneo');
 
-OGMNeo.connect(process.env.NEO4J_USER, process.env.NEO4J_PASS, process.env.NEO4J_HOST);
+OGMNeo.connect(process.env.NEO4J_USER, process.env.NEO4J_PASS, process.env.NEO4J_HOST, process.env.NEO4J_PROTOCOL);
 OGMNeo.logCypherEnabled = true;
 
 test('Test Connection', (assert) => {

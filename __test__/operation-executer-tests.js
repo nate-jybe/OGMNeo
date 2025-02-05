@@ -68,6 +68,7 @@ test('Test batch read type operations', (assert) => {
     let query2 = OGMNeoNode.findOneOperation(OGMNeoQuery.create('Person').where(OGMNeoWhere.create('name', { $eq: 'Alain Prost' })));
 
     OGMNeoOperationExecuter.batchReadOperations([query1, query2]).then((result) => {
+        console.log("Test batch read: result: ", result);
         let found1 = result[0];
         let found2 = result[1];
         assert.notEqual(found1.id, undefined);
